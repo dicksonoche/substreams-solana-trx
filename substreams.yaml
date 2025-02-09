@@ -1,0 +1,24 @@
+specVersion: v0.1.0
+package:
+  name: sm_foundational
+  version: v0.1.0
+
+imports:
+  sm: https://spkg.io/v1/packages/solana_accounts_foundational/v0.1.1
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ./target/wasm32-unknown-unknown/release/substreams.wasm
+
+modules:
+  - name: map_block
+    kind: map
+    binary: default
+    inputs:
+      - source: sf.solana.type.v1.Block
+    output:
+      type: proto:sf.solana.type.v1.Block
+    initialBlock: 312000000
+
+network: solana-accounts-mainnet
